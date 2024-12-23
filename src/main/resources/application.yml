@@ -1,0 +1,14 @@
+micronaut:
+  application:
+    name: sink
+  metrics:
+    enabled: true
+
+endpoints:
+  info:
+    enabled: true
+    sensitive: false
+
+  health:
+    enabled: true
+    sensitive: false
