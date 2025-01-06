@@ -1,0 +1,14 @@
+[
+    {
+        "api_cl_log_id": "123e4567-e89b-12d3-a456-426614174000",
+        "instance_id": 1,
+        "ws_id": 42,
+        "client_id": "223e4567-e89b-12d3-a456-426614174001",
+        "api_call_unique_identifier": "323e4567-e89b-12d3-a456-426614174002",
+        "cre_dt": "2024-12-31T12:34:56Z",
+        "log_level": "INFO",
+        "api_name": "ExampleAPI",
+        "msg_detail": "This is a detailed log message about the API call."
+    }
+]
+

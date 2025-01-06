@@ -10,7 +10,6 @@ buildscript {
 plugins {
     id("com.github.johnrengelman.shadow")       version "8.1.1"
     id("io.micronaut.application")              version "4.4.4"
-    id("io.micronaut.aot")                      version "4.4.4"
     id("com.gorylenko.gradle-git-properties")   version "2.4.2"
 }
 
@@ -22,33 +21,37 @@ repositories {
 }
 
 dependencies {
+
     annotationProcessor  "io.micronaut:micronaut-http-validation"
     annotationProcessor  "io.micronaut.serde:micronaut-serde-processor"
 
     // implementation
-    implementation "io.micrometer:context-propagation"
     implementation "io.micronaut.reactor:micronaut-reactor"
     implementation "io.micronaut.serde:micronaut-serde-jackson"
     implementation "io.micronaut.micrometer:micronaut-micrometer-core"
     implementation "io.micronaut.micrometer:micronaut-micrometer-registry-statsd"
     implementation "io.micronaut:micronaut-management"
+    implementation "io.micronaut:micronaut-jackson-databind"
+    implementation 'io.micronaut.data:micronaut-data-hibernate-jpa'
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
 
-
+    implementation "io.micrometer:context-propagation"
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+    implementation "io.opentelemetry:opentelemetry-api"
+    implementation 'ch.qos.logback:logback-core'
     implementation("org.slf4j:slf4j-api:${slf4jVersion}")
     implementation("org.apache.commons:commons-lang3:${apacheCommonsLang3Version}")
-
+    implementation "org.postgresql:postgresql:42.7.4"
 
     // compile
     compileOnly("io.micronaut:micronaut-http-client")
 
     // runtime
-    runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.yaml:snakeyaml")
 
     // test
     testImplementation("io.micronaut:micronaut-http-client")
 }
-
 
 application {
     mainClass = "com.paymentology.Application"
@@ -58,9 +61,6 @@ java {
     targetCompatibility = JavaVersion.toVersion("21")
 }
 
-
-graalvmNative.toolchainDetection = false
-
 micronaut {
     runtime("netty")
     testRuntime("junit5")
@@ -68,26 +68,11 @@ micronaut {
         incremental(true)
         annotations("com.paymentology.*")
     }
-    aot {
-        // Please review carefully the optimizations enabled below
-        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
-        optimizeServiceLoading = false
-        convertYamlToJava = false
-        precomputeOperations = true
-        cacheEnvironment = true
-        optimizeClassLoading = true
-        deduceEnvironment = true
-        optimizeNetty = true
-        replaceLogbackXml = true
-    }
 }
 
 application {
     mainClass.set("com.paymentology.Application")
 }
 
-tasks.named("dockerfileNative") {
-    jdkVersion = "21"
-}
 
 

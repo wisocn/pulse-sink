@@ -19,6 +19,8 @@
           buildInputs = [
             pkgs.just       
             pkgs.awscli
+            pkgs.liquibase
+            pkgs.apacheHttpd
           ];
         };
       }

@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+
+  # POSTGRES DEFINITION
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=paylog
+      - POSTGRES_USER=user1
+      - POSTGRES_PASSWORD=pass2
+    ports:
+      - "5436:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/db
+
+  pgadmin:
+    image: dpage/pgadmin4:6.4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: 1
+      PGADMIN_LISTEN_PORT: 80
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "8085:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+volumes:
+  postgres:
+  pgadmin:

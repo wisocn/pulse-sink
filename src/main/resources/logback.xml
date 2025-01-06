@@ -1,15 +1,31 @@
-<configuration>
+<?xml version="1.0" encoding="UTF-8"?>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <withJansi>false</withJansi>
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration scan="true" scanPeriod="1 seconds">
+    <!-- See:                                                                  -->
+    <!--    http://logback.qos.ch/manual/appenders.html#ConsoleAppender        -->
+    <!--    http://logback.qos.ch/manual/appenders.html#RollingFileAppender    -->
+    <!--    http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+    <!--                                                                       -->
+    <!-- for further instructions and detailed documentation                   -->
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
         <encoder>
-            <pattern>[%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %X %n</pattern>
+            <pattern>%cyan(%d{HH:mm:ss.SSS}) %cyan([%thread]) %highlight(%-5level) %magenta(%-36.36logger) - %-50msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="com.paymentology" level="${LOG_LEVEL:-INFO}"/>
+    <logger name="io.micronaut" level="INFO"/>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="console"/>
     </root>
+
 </configuration>

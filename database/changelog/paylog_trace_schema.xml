@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
+
+    <!-- ChangeSet to create the table -->
+    <changeSet id="create-log-payapi-trace-table" author="your-name">
+        <createTable tableName="log_payapi_trace">
+            <column name="api_cl_log_id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instance_id" type="INTEGER"/>
+            <column name="ws_id" type="INTEGER"/>
+            <column name="client_id" type="VARCHAR(50)"/>
+            <column name="api_call_unique_identifier" type="VARCHAR(50)"/>
+            <column name="cre_dt" type="VARCHAR(50)"/>
+            <column name="log_level" type="VARCHAR(50)"/>
+            <column name="api_name" type="VARCHAR(255)"/>
+            <column name="msg_detail" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet to create indexes -->
+    <changeSet id="create-index-instance-id" author="vid">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="log_payapi_trace" indexName="idx_instance_id">
+            <column name="instance_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-index-ws-id" author="vid">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="log_payapi_trace" indexName="idx_ws_id">
+            <column name="ws_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-index-api-name" author="vid">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="log_payapi_trace" indexName="idx_api_name">
+            <column name="api_name"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-index-log-level" author="vid">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="log_payapi_trace" indexName="idx_log_level">
+            <column name="log_level"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

@@ -2,13 +2,57 @@ micronaut:
   application:
     name: sink
   metrics:
-    enabled: true
+    enabled: false
 
 endpoints:
   info:
     enabled: true
     sensitive: false
 
+logging:
+  level:
+    io.micronaut.context.env: DEBUG
+
   health:
     enabled: true
     sensitive: false
+
+sinks:
+  noop:
+    test-noop-sink:
+      enabled: true
+      queue:
+        - type: "batch-flush-queue"
+          capacity: 500
+          batchSize: 300
+          maxFlushIterations: 20
+          flushEvery: 400
+  postgres:
+    pay-api-trace-schema:
+      enabled: true
+      host: "localhost"
+      port: 5436
+      database: "paylog"
+      table: "log_payapi_trace"
+      username: "user1"
+      password: "pass2"
+      queue:
+        - type: "batch-flush-queue"
+          capacity: 10000
+          batchSize: 300
+          maxFlushIterations: 20
+          flushEvery: 400
+    pay-api-trace-universal:
+      enabled: true
+      host: "localhost"
+      port: 5436
+      database: "paylog"
+      table: "universal_log"
+      username: "user1"
+      password: "pass2"
+      queue:
+        - type: "batch-flush-queue"
+          capacity: 10000
+          batchSize: 300
+          maxFlushIterations: 20
+          flushEvery: 400
