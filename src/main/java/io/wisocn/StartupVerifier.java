@@ -1,8 +1,7 @@
-package com.paymentology;
+package io.wisocn;
 
 
-import com.paymentology.config.NoopSinkConfig;
-import com.paymentology.handler.SinkHandlerService;
+import io.wisocn.handler.SinkHandlerService;
 import io.micronaut.context.BeanContext;
 import io.micronaut.context.event.StartupEvent;
 import io.micronaut.runtime.event.annotation.EventListener;

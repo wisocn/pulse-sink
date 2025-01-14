@@ -1,6 +1,6 @@
-package com.paymentology.handler;
-import com.paymentology.config.SinkConfig;
-import com.paymentology.sink.Sink;
+package io.wisocn.handler;
+import io.wisocn.config.SinkConfig;
+import io.wisocn.sink.Sink;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.PathVariable;

@@ -1,10 +1,8 @@
-package com.paymentology;
+package io.wisocn;
 
-import com.paymentology.handler.SinkHandlerService;
+import io.wisocn.handler.SinkHandlerService;
 import io.micronaut.context.ApplicationContext;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ConfigTest {
 

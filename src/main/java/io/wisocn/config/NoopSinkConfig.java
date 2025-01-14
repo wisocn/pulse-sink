@@ -1,18 +1,11 @@
-package com.paymentology.config;
+package io.wisocn.config;
 
-import com.paymentology.queue.BatchFlushQueue;
-import com.paymentology.sink.Sink;
-import com.paymentology.sink.impl.NoopSink;
-import com.paymentology.sink.impl.PostgresSink;
+import io.wisocn.sink.Sink;
+import io.wisocn.sink.impl.NoopSink;
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collection;
-import java.util.concurrent.*;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 @EachProperty("sinks.noop")
 public class NoopSinkConfig implements SinkConfig{

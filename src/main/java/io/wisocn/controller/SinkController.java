@@ -1,7 +1,7 @@
-package com.paymentology.controller;
+package io.wisocn.controller;
 
 
-import com.paymentology.handler.SinkHandlerService;
+import io.wisocn.handler.SinkHandlerService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import org.slf4j.Logger;

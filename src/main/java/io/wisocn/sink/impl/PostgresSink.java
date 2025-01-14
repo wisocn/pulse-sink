@@ -1,20 +1,16 @@
-package com.paymentology.sink.impl;
+package io.wisocn.sink.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paymentology.config.NoopSinkConfig;
-import com.paymentology.config.PostgresSinkConfig;
-import com.paymentology.config.QueueConfig;
-import com.paymentology.queue.BatchFlushQueue;
-import com.paymentology.sink.Sink;
+import io.wisocn.config.PostgresSinkConfig;
+import io.wisocn.config.QueueConfig;
+import io.wisocn.queue.BatchFlushQueue;
+import io.wisocn.sink.Sink;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.postgresql.util.PGobject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

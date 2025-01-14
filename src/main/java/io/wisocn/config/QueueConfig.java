@@ -1,4 +1,4 @@
-package com.paymentology.config;
+package io.wisocn.config;
 
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.serde.annotation.SerdeImport;

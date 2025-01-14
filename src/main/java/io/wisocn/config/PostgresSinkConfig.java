@@ -1,8 +1,8 @@
-package com.paymentology.config;
+package io.wisocn.config;
 
-import com.paymentology.queue.BatchFlushQueue;
-import com.paymentology.sink.Sink;
-import com.paymentology.sink.impl.PostgresSink;
+import io.wisocn.queue.BatchFlushQueue;
+import io.wisocn.sink.Sink;
+import io.wisocn.sink.impl.PostgresSink;
 import io.micronaut.context.annotation.EachProperty;
 import io.micronaut.context.annotation.Parameter;
 import org.slf4j.Logger;

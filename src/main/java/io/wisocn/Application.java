@@ -1,4 +1,4 @@
-package com.paymentology;
+package io.wisocn;
 
 import io.micronaut.runtime.Micronaut;
 

@@ -1,9 +1,9 @@
-package com.paymentology.sink.impl;
+package io.wisocn.sink.impl;
 
-import com.paymentology.config.NoopSinkConfig;
-import com.paymentology.config.QueueConfig;
-import com.paymentology.queue.BatchFlushQueue;
-import com.paymentology.sink.Sink;
+import io.wisocn.config.NoopSinkConfig;
+import io.wisocn.config.QueueConfig;
+import io.wisocn.queue.BatchFlushQueue;
+import io.wisocn.sink.Sink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

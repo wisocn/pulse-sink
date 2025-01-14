@@ -1,4 +1,4 @@
-package com.paymentology.queue;
+package io.wisocn.queue;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;

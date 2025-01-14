@@ -1,4 +1,4 @@
-package com.paymentology.sink;
+package io.wisocn.sink;
 import java.util.List;
 import java.util.Map;
 
