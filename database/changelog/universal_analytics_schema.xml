@@ -6,8 +6,8 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
 
     <!-- ChangeSet to create the table -->
-    <changeSet id="create-log-payapi-trace-table" author="your-name">
-        <createTable tableName="log_payapi_trace">
+    <changeSet id="create-log-universal-trace-table" author="vid">
+        <createTable tableName="universal_trace">
             <column name="api_cl_log_id" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
@@ -26,10 +26,10 @@
     <changeSet id="create-index-instance-id" author="vid">
         <preConditions onFail="MARK_RAN">
             <not>
-                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+                <indexExists tableName="universal_trace" indexName="idx_instance_id"/>
             </not>
         </preConditions>
-        <createIndex tableName="log_payapi_trace" indexName="idx_instance_id">
+        <createIndex tableName="universal_trace" indexName="idx_instance_id">
             <column name="instance_id"/>
         </createIndex>
     </changeSet>
@@ -37,10 +37,10 @@
     <changeSet id="create-index-ws-id" author="vid">
         <preConditions onFail="MARK_RAN">
             <not>
-                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+                <indexExists tableName="universal_trace" indexName="idx_instance_id"/>
             </not>
         </preConditions>
-        <createIndex tableName="log_payapi_trace" indexName="idx_ws_id">
+        <createIndex tableName="universal_trace" indexName="idx_ws_id">
             <column name="ws_id"/>
         </createIndex>
     </changeSet>
@@ -48,10 +48,10 @@
     <changeSet id="create-index-api-name" author="vid">
         <preConditions onFail="MARK_RAN">
             <not>
-                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+                <indexExists tableName="universal_trace" indexName="idx_instance_id"/>
             </not>
         </preConditions>
-        <createIndex tableName="log_payapi_trace" indexName="idx_api_name">
+        <createIndex tableName="universal_trace" indexName="idx_api_name">
             <column name="api_name"/>
         </createIndex>
     </changeSet>
@@ -59,10 +59,10 @@
     <changeSet id="create-index-log-level" author="vid">
         <preConditions onFail="MARK_RAN">
             <not>
-                <indexExists tableName="log_payapi_trace" indexName="idx_instance_id"/>
+                <indexExists tableName="universal_trace" indexName="idx_instance_id"/>
             </not>
         </preConditions>
-        <createIndex tableName="log_payapi_trace" indexName="idx_log_level">
+        <createIndex tableName="universal_trace" indexName="idx_log_level">
             <column name="log_level"/>
         </createIndex>
     </changeSet>

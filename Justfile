@@ -2,34 +2,39 @@
 set shell := ["bash", "-euo", "pipefail", "-c"]
 
 # Globals
-# export GIT_SHA := `git rev-parse --short HEAD`
+export GIT_SHA := `git rev-parse --short HEAD`
+export POSTGRES_HOST := "localhost"
+export POSTGRES_PORT := "5436"
+export POSTGRES_USER := "user1"
 
 [private]
 default:
 	@just --list --unsorted
 
+run-docker:
+    docker-compose up -d
+
 build:
     ./gradlew clean build shadowJar
 
-package:
+package: build
     docker build .
 
-migrate:
+setup: run-docker
+    #!/usr/local/bin/bash
+    echo "Waiting for postgres"
+    until pg_isready -h {{POSTGRES_HOST}} -p {{POSTGRES_PORT}} -U {{POSTGRES_USER}}; do
+        echo "Postgres is not ready. Retrying in 2 seconds..."
+        sleep 2
+    done
+    echo "PostgreSQL is ready. Running migrations..."
     liquibase --defaultsFile=database/liquibase.properties update
 
 run:
     java -jar build/libs/pulse-sink-0.1-all.jar
 
-submit sink:
-    curl -X POST "http://localhost:8080/v1/sink/submit/{{sink}}" \
-        -H "Content-Type: application/json" \
-        -d '[{"key1":"value1","key2":42,"key3":true},{"key1":"value2","key2":123,"key3":false}]' | jq .
+teardown:
+    docker-compose down
 
 benchmark number:
-     ab -n {{number}} -c 10 -p benchmark/data.json -T 'application/json' http://localhost:8080/v1/sink/submit/pay-api-trace-schema
-
-
-submit-trace:
-    curl -X POST "http://localhost:8080/v1/sink/submit/pay-api-trace-schema" \
-    -H "Content-Type: application/json" \
-    -d '[{"api_cl_log_id":"123e4567-e89b-12d3-a456-426614174000","instance_id":1,"ws_id":42,"client_id":"223e4567-e89b-12d3-a456-426614174001","api_call_unique_identifier":"323e4567-e89b-12d3-a456-426614174002","cre_dt":"2024-12-31T12:34:56Z","log_level":"INFO","api_name":"ExampleAPI","msg_detail":"This is a detailed log message about the API call."}]'
+     ab -n {{number}} -c 10 -p benchmark/data.json -T 'application/json' http://localhost:8080/v1/sink/submit/universal-analytics-trace-schema

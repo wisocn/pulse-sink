@@ -28,26 +28,12 @@ sinks:
           maxFlushIterations: 20
           flushEvery: 400
   postgres:
-    pay-api-trace-schema:
+    universal-analytics-trace-schema:
       enabled: true
       host: "localhost"
       port: 5436
       database: "paylog"
-      table: "log_payapi_trace"
-      username: "user1"
-      password: "pass2"
-      queue:
-        - type: "batch-flush-queue"
-          capacity: 10000
-          batchSize: 300
-          maxFlushIterations: 20
-          flushEvery: 400
-    pay-api-trace-universal:
-      enabled: true
-      host: "localhost"
-      port: 5436
-      database: "paylog"
-      table: "universal_log"
+      table: "universal_trace"
       username: "user1"
       password: "pass2"
       queue:

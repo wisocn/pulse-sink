@@ -54,7 +54,7 @@ dependencies {
 }
 
 application {
-    mainClass = "com.paymentology.Application"
+    mainClass = "io.wisocn.Application"
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("21")
@@ -66,13 +66,10 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("com.paymentology.*")
+        annotations("io.wisocn.*")
     }
 }
 
-application {
-    mainClass.set("com.paymentology.Application")
-}
 
 
 
